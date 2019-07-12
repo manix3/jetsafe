@@ -38,11 +38,13 @@
               </a>
               <ul id="sidebar_bancos" class="collapse" aria-expanded="false" style="height: 0px;">
 
-                  <li><a href="<?php echo base_url(); ?>mantenimiento/Bancos">Ver productos</a></li>
-                  <li><a href="<?php echo base_url(); ?>seguimiento_bancos">Metodo de pago</a></li>
-                  <li><a href="<?php echo base_url(); ?>seguimiento_bancos">Empresa</a></li>
+                  <li><a href="<?php echo base_url(); ?>productos">Ver productos</a></li>
+                  <li><a href="<?php echo base_url(); ?>Metodo_pago">Metodo de pago</a></li>
+                  <li><a href="<?php echo base_url(); ?>empresa">Empresa</a></li>
               </ul>
           </li>
+
+
 
           <li class="" id="cate_menu">
               <a class="collapsed" href="#cat_sidebar-tables" data-toggle="collapse" data-parent="#cat_sidebar" aria-expanded="false">
