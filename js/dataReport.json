@@ -1,0 +1,33 @@
+{
+  "last_day_donut":[{"count":"5"},{"count":"2"},{"count":"10"},{"count":"1"}],
+   "last_day_bar":[
+      {"ser_nom":"Lavado Simple","count":"12"},
+      {"ser_nom":"Lavado Techo","count":"2"},
+      {"ser_nom":"Lavado y Pulido","count":"3"},
+      {"ser_nom":"Lavado y Aspirado","count":"1"}
+   ],
+   "last_week_line":[
+      {"fecha":"2019-02-25","count":"12"},
+      {"fecha":"2019-02-26","count":"15"},
+      {"fecha":"2019-02-27","count":"20"},
+      {"fecha":"2019-02-28","count":"30"},
+      {"fecha":"2019-03-01","count":"0"},
+      {"fecha":"2019-03-02","count":"0"},
+      {"fecha":"2019-03-03","count":"0"}
+   ],
+   "last_week_line_ing":[
+      {"fecha":"2019-02-25","count":"30"},
+      {"fecha":"2019-02-26","count":"20"},
+      {"fecha":"2019-02-27","count":"20"},
+      {"fecha":"2019-02-28","count":"30"},
+      {"fecha":"2019-03-01","count":"0"},
+      {"fecha":"2019-03-02","count":"0"},
+      {"fecha":"2019-03-03","count":"0"}
+   ],
+   "week_donut":[
+      {"ser_nom":"Lavado Simple","count":"35"},
+      {"ser_nom":"Lavado Techo","count":"12"},
+      {"ser_nom":"Lavado y Pulido","count":"33"},
+      {"ser_nom":"Lavado y Aspirado","count":"20"}
+   ]
+}

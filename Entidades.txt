@@ -1,0 +1,98 @@
+ Clientes {
+    id,
+    nombre*,
+    telefono*,
+    apallido,
+    direccion,
+    documento,
+    fecha_nac,
+    correo,
+    telefonoSec,
+    direccionAnt,
+    pedido°,
+    fecha_ingreso,
+    is_active,
+}
+
+
+Tipo_de_pedido{
+  id,
+  nombre,
+  is_active,
+}
+
+
+Usuarios{
+    id,
+    nom,
+    corr,
+    telef,
+    tipo°,
+    sesion,
+    fech_crea,
+    is_active,
+}
+
+/*
+
+  -SU
+  -Vendedor
+  -Manager
+  -Asesor
+
+*/
+
+
+tipo_de_usuario{
+  id,
+  nombre,
+  is_active,
+}
+
+
+Orden{
+  id,
+  clien,
+  vendedor, //puede variar
+  asesor,
+  estado,
+  fecha_crea,
+  fecha_prox_contacto,
+}
+
+est_orden{
+
+}
+
+tip_orden{
+
+}
+
+seguimiento{
+  id,
+  ide_orden,
+  des,
+  urgencia,
+  fecha,
+  prox_fech_cont,
+}
+
+
+tip_urgencia{
+    id,
+    nombre,
+    is_active,
+}
+
+
+
+ventas{
+  id,
+  clien,
+  vendedor, //puede variar
+  asesor,
+  estado,
+  fecha_crea,
+  fecha_cul_serv,
+
+}
