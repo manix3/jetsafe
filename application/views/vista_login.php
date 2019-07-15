@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Adela System</title>
+    <title>Jet safe</title>
 
     <link href="<?php echo base_url(); ?>css/application.min.css" rel="stylesheet">
     <!-- as of IE9 cannot parse css files with more that 4K classes separating in two files -->
@@ -29,7 +29,7 @@
             <div class="col-lg-4 col-sm-6 col-xs-10 col-lg-offset-4 col-sm-offset-3 col-xs-offset-1">
                 <h4 class="widget-login-logo animated fadeInUp">
                     <i class="fa fa-circle text-gray"></i>
-                    Adela System
+                    Jet safe
                     <i class="fa fa-circle text-warning"></i>
                 </h4>
                 <section class="widget widget-login animated fadeInUp">

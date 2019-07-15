@@ -33,7 +33,7 @@
                 <i class="fa fa-circle text-gray mr-n-sm"></i>
                 <i class="fa fa-circle text-warning"></i>
                 &nbsp;
-                Adela System
+                Jet safe
                 &nbsp;
                 <i class="fa fa-circle text-warning mr-n-sm"></i>
                 <i class="fa fa-circle text-gray"></i>

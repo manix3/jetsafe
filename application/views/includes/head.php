@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Adela System</title>
+    <title>Jet safe</title>
     <link href="<?= base_url() ?>css/ol/ol.css" rel="stylesheet">
         <link href="<?= base_url() ?>css/ol/ol3-layerswitcher.css" rel="stylesheet">
           <link href="<?= base_url() ?>css/ol/ol-popup.css" rel="stylesheet">
