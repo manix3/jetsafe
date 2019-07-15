@@ -16,6 +16,8 @@
               <tr>
 
                 <th>Titulo</th>
+                <th>Notificación</th>
+                <th>Observacion</th>
                 <th>Orden</th>
                 <th>Estado</th>
                 <th></th>

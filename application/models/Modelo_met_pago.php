@@ -8,7 +8,7 @@ class Modelo_met_pago extends CI_Model
   {
 
     $where = '';
-    $select = "select titulo,orden,estado,metodopagoid";
+    $select = "select titulo,orden,estado,metodopagoid,observacion,notificacion";
 
     if ($id != null) {
       $where = "WHERE metodopagoid = $id";

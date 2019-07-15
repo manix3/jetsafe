@@ -32,6 +32,7 @@ $('#datatable-table').on('click','.edi_registro',function(e) {
   $('#title').html('Editar')
   $('#myModaledita').modal('show')
 })
+
 $('#datatable-table').on('click','.bor_registro',function(e) {
   e.preventDefault()
   var idr = $(this).attr('idr')
@@ -53,19 +54,23 @@ $('#datatable-table').on('click','.bor_registro',function(e) {
 })
 
 function modalData(idr) {
-  $('#pass').hide()
-  $.post(base_url+ `Usuario/get_usu/${idr}`,function(data) {
+  $.post(base_url+ `Usuarios/list_usu/${idr}`,function(data) {
     var detalle = '';
     $.each(data,function (i,item) {
-      $("#inp_text1").val(item.ide_usu)
-      $("#inp_text2").val(item.nom_usu)
-      $("#inp_text4").val(item.ide_tip_usu)
+      $("#inp_text1").val(item.usuarioid)
+      $("#inp_text2").val(item.nombres)
+      $('#inp_text3').val(item.usuario)
+      $('#inp_text5').val(item.estado)
+      $("#inp_text6").val(item.ejecutivo)
+      $('#inp_text7').val(item.admin)
 
 
       detalle += `
-      <tr><th>Nombre:</th><td>${item.nom_usu}</td></tr>
-      <tr><th>Direccion: </th><td>Este dato no existe</td></tr>
-      <tr><th>Email: </th><td>Este dato no existe</td></tr>
+      <tr><th>Nombre:</th><td>${item.nombres}</td></tr>
+      <tr><th>Usuario: </th><td>${item.usuario}</td></tr>
+      <tr><th>Estado: </th><td>${item.estado == '1' ? 'Activo' : 'Inactivo'}</td></tr>
+      <tr><th>Ejecutivo: </th><td>${item.ejecutivo == '1' ? 'Si' : 'No'}</td></tr>
+      <tr><th>Admin: </th><td>${item.admin == '1' ? 'Si' : 'No'}</td></tr>
 
 
 
@@ -79,18 +84,17 @@ function modalData(idr) {
 
   function jalar_data() {
     datatable = ''
-    $.getJSON(base_url+'Usuario/list_usu', function(data){
+    $.getJSON(base_url+'Usuarios/list_usu', function(data){
       $.each(data, function (i,item) {
         datatable += `
         <tr>
-          <td>${item.nom_usu}</td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>${item.nombres}</td>
+          <td>${item.usuario}</td>
+          <td>${item.estado == '1' ? 'Activo' : 'Inactivo'}</td>
 
-          <td class="ver_registro" idr="${item.ide_usu}" ><i class="fa fa-search"></i> </td>
-          <td class="edi_registro" idr="${item.ide_usu}"><i class="fa fa-pencil"></i> </td>
-          <td class="bor_registro" idr="${item.ide_usu}"><i class="fa fa-trash-o"></i> </td>
+          <td class="ver_registro" idr="${item.usuarioid}" ><i class="fa fa-search"></i> </td>
+          <td class="edi_registro" idr="${item.usuarioid}"><i class="fa fa-pencil"></i> </td>
+          <td class="bor_registro" idr="${item.usuarioid}"><i class="fa fa-trash-o"></i> </td>
         </tr>
                     `;
 
@@ -105,9 +109,6 @@ function modalData(idr) {
     })
   }
 
-function modal_Data(destino) {
-
-}
 
 function modal_sent_data() {
 let accion = $("#accion").val()
@@ -127,7 +128,7 @@ let accion = $("#accion").val()
 
   }
   $.ajax({
-    url:`${base_url}Usuario/${destino}`,
+    url:`${base_url}Usuarios/${destino}`,
     data : $('#form1').serialize(),
     type: 'POST',
     success:function(data){

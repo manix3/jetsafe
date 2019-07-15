@@ -4,11 +4,11 @@ class Modelo_usuario extends CI_Model  {
 
   function login($username, $password)
    {
-     $username=strtoupper($username);
+     // $username=strtoupper($username);
 
     $res = $this->db->select('*')
-                     ->from('t_empresas')
-                     ->where(array('codigo_afiliacion' => $username , 'clave' => $this->hash($password) ))
+                     ->from('t_usuarios')
+                     ->where(array('usuario' => $username , 'clave' => $this->hash($password) ))
                      ->get();
 
       if ($res) {

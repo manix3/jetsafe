@@ -39,12 +39,10 @@ class Verifica extends CI_Controller {
     if($res)
     {
       $sess_array = array(
-        'SES_CODIGO' => $res[0]->codigo_afiliacion,
-        'SES_EMAIL' => $res[0]->email,
-        'SES_USERID' => $res[0]->empresaid,
-        'SES_RUC' => $res[0]->ruc,
-        'SES_EMPRESA' => $res[0]->nombre_comercial,
-        'SES_TELEFONO' => $res[0]->telefono,
+        'SES_NOMBRE' => $res[0]->nombres,
+        'SES_EMAIL' => $res[0]->usuario,
+        'SES_USERID' => $res[0]->usuarioid,
+        'SES_TIPO' => $res[0]->admin,
       );
       $this->session->set_userdata('logged_in', $sess_array);
       return true;

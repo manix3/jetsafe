@@ -56,8 +56,8 @@
               </a>
               <ul id="cat_sidebar-tables" class="collapse" aria-expanded="false" style="height: 0px;">
 
-                  <li><a href="<?= base_url(); ?>mantenimiento/Categorias">Parámetros</a></li>
-                  <li><a href="<?= base_url(); ?>mantenimiento/Categorias">Usuarios</a></li>
+                  <li><a href="<?= base_url(); ?>Parametros">Parámetros</a></li>
+                  <li><a href="<?= base_url(); ?>usuarios">Usuarios</a></li>
 
               </ul>
           </li>

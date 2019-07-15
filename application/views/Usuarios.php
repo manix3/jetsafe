@@ -15,9 +15,8 @@
           <thead>
               <tr>
                 <th>Nombre</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th>Tipo de usuario</th>
+                <th>Usuario</th>
+                <th>Estado</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -62,11 +61,22 @@
 
             <div class="form-group">
               <label for="normal-field" class="col-sm-4 control-label">
-                Nombre de usuario
+                Nombres
 
               </label>
                 <div class="col-sm-8">
                   <input id="inp_text2" name="inp_text2" class="form-control" required placeholder="Nombre" value='' type="text">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+              <label for="normal-field" class="col-sm-4 control-label">
+                Usuario
+
+              </label>
+                <div class="col-sm-8">
+                  <input id="inp_text3" name="inp_text3" class="form-control" required placeholder="usuario" value='' type="email">
                 </div>
 
             </div>
@@ -76,22 +86,55 @@
                   Contraseña
                   </label>
                   <div class="col-sm-8">
-                    <input id="inp_text3" name="inp_text3" class="form-control" required placeholder="Contraseña" value='' type="password">
+                    <input id="inp_text4" name="inp_text4" class="form-control" required placeholder="Contraseña" value='' type="password">
                   </div>
 
             </div>
 
             <div class="form-group">
-              <label for="normal-field" class="col-sm-4 control-label">Tipo de usuario</label>
-              <div class="col-sm-8">
-                <select id="inp_text4" name="inp_text4" class="form-control" placeholder="" value='' >
-                  <option value="1">ADMINISTRADOR</option>
-                  <option value="2">Empleado</option>
-                </select>
-              </div>
-            </div>
+              <label for="normal-field" class="col-sm-4 control-label">
+                Estado
+
+              </label>
+                <div class="col-sm-8">
+                  <select id="inp_text5" name="inp_text5" class="form-control" required value=''>
+                      <option value="1">Activo</option>
+                      <option value="0">Inactiva</option>
+                  </select>
+                </div>
 
             </div>
+
+            <div class="form-group">
+              <label for="normal-field" class="col-sm-4 control-label">
+                Ejecutivo
+
+              </label>
+                <div class="col-sm-8">
+                    <select id="inp_text6" name="inp_text6" class="form-control" required value=''>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+              <label for="normal-field" class="col-sm-4 control-label">
+                Admin
+
+              </label>
+                <div class="col-sm-8">
+                    <select id="inp_text7" name="inp_text7" class="form-control" required value=''>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+
 
           </fieldset>
           <div class="modal-footer">

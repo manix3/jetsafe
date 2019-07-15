@@ -7,15 +7,18 @@
 
   <h1>Lista de <span class="fw-semi-bold">Productos</span></h1>
 
-  <button type="button" class="btn btn-primary" id="btnNuevo" style="margin-bottom: 12px;">Nuevo profesional</button>
+  <button type="button" class="btn btn-primary" id="btnNuevo" style="margin-bottom: 12px;">Nuevo Productos</button>
 
     <section class="widget">
 
         <table id="datatable-table" class="table table-striped table-hover">
           <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Telefono</th>
+                <th>TITULO</th>
+                <th>PRECIO</th>
+                <th>ORDEN</th>
+                <th>INFORMACION ADICIONAL</th>
+                <th>ESTADO</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -49,7 +52,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h3 class="modal-title" id="myModaleditaLabel"> <span id="title"></span> profesional</h3>
+          <h3 class="modal-title" id="myModaleditaLabel"> <span id="title"></span> Productos</h3>
         </div>
         <div class="modal-body">
           <fieldset>
@@ -58,38 +61,68 @@
             <input id="accion" name="accion" class="form-control" placeholder="" readonly="true" value='' type="hidden">
 
 
+            <div class="form-group formsinmargen">
+              <label for="normal-field" class="col-sm-4 control-label">
+                Titulo
+                <span class="help-block">Ingles / Español</span>
+              </label>
+                <div class="col-sm-4">
+                  <input id="inp_text2" name="inp_text2" class="form-control" required placeholder="Español" value='' type="text">
+                </div>
+                <div class="col-sm-4">
+                  <input id="inp_text3" name="inp_text3" class="form-control" placeholder="English" value='' type="text">
+                </div>
+            </div>
+
             <div class="form-group">
               <label for="normal-field" class="col-sm-4 control-label">
-                Nombre del profesional
+                Precio
 
               </label>
                 <div class="col-sm-8">
-                  <input id="inp_text2" name="inp_text2" class="form-control" required placeholder="Nombre completo" value='' type="text">
+                  <input id="inp_text4" name="inp_text4" placeholder="Precio" class="form-control" required value='' type="number">
+
                 </div>
 
             </div>
+
             <div class="form-group">
               <label for="normal-field" class="col-sm-4 control-label">
-                Telefono
+                Orden
 
               </label>
                 <div class="col-sm-8">
-                  <input id="inp_text3" name="inp_text3" placeholder="Numero telefonico" class="form-control" required value='' type="text">
+                  <input id="inp_text5" name="inp_text5" placeholder="Orden" class="form-control" required value='' type="number">
 
                 </div>
 
             </div>
+
             <div class="form-group">
               <label for="normal-field" class="col-sm-4 control-label">
-                Categoria
+                Informacion adicional
 
               </label>
                 <div class="col-sm-8">
-                  <select id="inp_text4" name="inp_text4" class="form-control" required value='' >
+                  <select id="inp_text6" name="inp_text6" class="form-control" required value='' type="text">
+                      <option value="0">Si</option>
+                      <option value="1">No</option>
                   </select>
                 </div>
 
             </div>
+
+            <div class="form-group">
+              <label for="normal-field" class="col-sm-4 control-label">
+                Estado
+
+              </label>
+                <div class="col-sm-8">
+                  <select id="inp_text7" name="inp_text7" class="form-control" required value='' type="text">
+                      <option value="0">Inactivo</option>
+                      <option value="1">Activo</option>
+                  </select>
+                </div>
 
             </div>
 
@@ -109,7 +142,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 class="modal-title" id="myModalLabel">Datos del profesional</h3>
+        <h3 class="modal-title" id="myModalLabel">Datos del productos</h3>
 
       </div>
       <div class="modal-body">
@@ -139,4 +172,4 @@
 
 <?php $this->load->view('includes/scripts') ?>
 
-<script src="<?php echo base_url(); ?>js/profesionales.js"></script>
+<script src="<?php echo base_url(); ?>js/productos.js"></script>

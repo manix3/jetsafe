@@ -35,8 +35,13 @@ class Productos extends CI_Controller {
   public function ins()
   {
     $data = array(
-      'nom_man' => $this->input->post('inp_text2'),
-      'ide_cat' => $this->input->post('inp_text3'),
+      'titulo' => $this->input->post('inp_text2'),
+      'titulo_en' => $this->input->post('inp_text3'),
+      'precio' => $this->input->post('inp_text4'),
+      'orden' => $this->input->post('inp_text5'),
+      'informacion_adicional' => $this->input->post('inp_text6'),
+      'estado' => $this->input->post('inp_text7'),
+      'fecha' => date('Y-m-d H:i:s')
     );
     $res = $this->Modelo_productos->ins($data);
 
@@ -47,11 +52,16 @@ class Productos extends CI_Controller {
   public function upd()
   {
     $datos = array(
-      'nom_man' => $this->input->post('inp_text2'),
-      'ide_cat' => $this->input->post('inp_text3'),
-      );
+      'titulo' => $this->input->post('inp_text2'),
+      'titulo_en' => $this->input->post('inp_text3'),
+      'precio' => $this->input->post('inp_text4'),
+      'orden' => $this->input->post('inp_text5'),
+      'informacion_adicional' => $this->input->post('inp_text6'),
+      'estado' => $this->input->post('inp_text7'),
+      'fecha_update' => date('Y-m-d H:i:s')
+    );
     $id = $this->input->post('inp_text1');
-    $res = $this->Modelo_productos->del($id, $datos);
+    $res = $this->Modelo_productos->upd($id, $datos);
 
     $this->output->set_content_type('application/json')
     ->set_output(json_encode($res));
@@ -59,9 +69,8 @@ class Productos extends CI_Controller {
 
   public function del()
   {
-    $datos = array('is_active_man' => 0 );
     $id = $this->input->post('inp_text1');
-    $res = $this->Modelo_productos->del($id, $datos);
+    $res = $this->Modelo_productos->del($id);
 
     $this->output->set_content_type('application/json')
     ->set_output(json_encode($res));

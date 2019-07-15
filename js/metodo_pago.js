@@ -120,6 +120,8 @@ function modalData(idr,type) {
         datatable += `
         <tr>
           <td>${item.titulo}</td>
+          <td>${item.notificacion}</td>
+          <td>${item.observacion}</td>
           <td>${item.orden}</td>
           <td>${item.publicado}</td>
           <td class="ver_registro" idr="${item.metodopagoid}" ><i class="fa fa-search"></i> </td>
