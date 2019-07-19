@@ -68,7 +68,7 @@ function modalData(idr) {
       detalle += `
       <tr><th>Titulo:</th><td>${item.titulo}</td></tr>
       <tr><th>Titulo EN:</th><td>${item.titulo_en}</td></tr>
-      <tr><th>Informacion adicional:</th><td>${item.informacion_adicional == '1' ? 'No' : 'Si'}</td></tr>
+      <tr><th>Informacion adicional:</th><td>${item.informacion_adicional == '0' ? 'No' : 'Si'}</td></tr>
       <tr><th>Precio:</th><td>${item.precio}</td></tr>
       `;
     })

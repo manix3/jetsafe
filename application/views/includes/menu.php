@@ -72,7 +72,7 @@
               </a>
               <ul id="sidebar-tables" class="collapse" aria-expanded="false" style="height: 0px;">
 
-                  <li><a href="<?php echo base_url(); ?>mantenimiento/Usuarios">Ver Compras</a></li>
+                  <li><a href="<?php echo base_url(); ?>compras">Ver Compras</a></li>
 
               </ul>
           </li>

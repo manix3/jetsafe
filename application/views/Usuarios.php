@@ -99,7 +99,7 @@
                 <div class="col-sm-8">
                   <select id="inp_text5" name="inp_text5" class="form-control" required value=''>
                       <option value="1">Activo</option>
-                      <option value="0">Inactiva</option>
+                      <option value="0">Inactivo</option>
                   </select>
                 </div>
 

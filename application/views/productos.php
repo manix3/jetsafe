@@ -105,8 +105,8 @@
               </label>
                 <div class="col-sm-8">
                   <select id="inp_text6" name="inp_text6" class="form-control" required value='' type="text">
-                      <option value="0">Si</option>
-                      <option value="1">No</option>
+                      <option value="1">Si</option>
+                      <option value="0">No</option>
                   </select>
                 </div>
 
@@ -119,8 +119,8 @@
               </label>
                 <div class="col-sm-8">
                   <select id="inp_text7" name="inp_text7" class="form-control" required value='' type="text">
-                      <option value="0">Inactivo</option>
                       <option value="1">Activo</option>
+                      <option value="0">Inactivo</option>
                   </select>
                 </div>
 

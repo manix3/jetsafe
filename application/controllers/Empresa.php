@@ -53,7 +53,6 @@ class Empresa extends CI_Controller {
        'razon_social' => $this->input->post('inp_text4'),
        'nombre_comercial' => $this->input->post('inp_text5'),
        'email' => $this->input->post('inp_text6'),
-       'web' => $this->input->post('inp_text7'),
     );
 
     $id = $this->input->post('inp_text1');

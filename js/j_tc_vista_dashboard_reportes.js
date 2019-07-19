@@ -14,12 +14,12 @@ $(function () {
 
 function get_repo_dash() {
 
-  $.post(`${base_url}js/dataReport.json`,  function (data) {
-      last_day_donut(data.last_day_donut);
-      last_day_bar(data.last_day_bar)
-      lineWeek(data.last_week_line)
-      lineWeekPercent(data.last_week_line_ing)
-      week_donut(data.week_donut)
+  $.post(`${base_url}home/pedidos`,  function (data) {
+      // last_day_donut(data.last_day_donut);
+      last_day_bar(data.t_pedido_detalle)
+      lineWeek(data.t_pedido)
+      // lineWeekPercent(data.last_week_line_ing)
+      // week_donut(data.week_donut)
   })
 
 }
@@ -56,8 +56,8 @@ async function last_day_bar(obj) {
     var labels = new Array();
 
     $.each(obj,function(i,item) {
-      data.push(item.count);
-      labels.push(item.ser_nom);
+      data.push(item.nro_producto_por_dia);
+      labels.push(item.fecha);
     })
 
     barLastDay = new Chart($('#barLastDay'), {
@@ -91,7 +91,7 @@ async function lineWeek(obj) {
     var labels = new Array();
 
     $.each(obj,function(i,item) {
-      data.push(item.count);
+      data.push(item.nro_pedido_por_dia);
       labels.push(item.fecha);
     })
 

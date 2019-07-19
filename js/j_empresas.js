@@ -74,14 +74,12 @@ function modalData(idr,type) {
                 <tr><th>Razon Social:</th><td>${item.razon_social}</td></tr>
                 <tr><th>Nombre Comercial:</th><td>${item.nombre_comercial}</td></tr>
                 <tr><th>Email:</th><td>${item.email}</td></tr>
-                <tr><th>Web:</th><td>${item.web}</td></tr>
                 `;
               })
               $('#detalle_registro').html(detalle)
 
                 break;
               case 'edi_registro':
-              $('#webb').css('display','block')
               $.each(data,function (i,item) {
                 $("#inp_text1").val(item.empresaid)
 

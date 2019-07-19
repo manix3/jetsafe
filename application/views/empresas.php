@@ -107,7 +107,7 @@
                   <input id="inp_text6" name="inp_text6" placeholder="Email" class="form-control" required value='' type="email">
                 </div>
             </div>
-            <div class="form-group" style="display:none" id="webb">
+            <!-- <div class="form-group" style="display:none" id="webb">
               <label for="normal-field" class="col-sm-4 control-label">
               Web
 
@@ -115,7 +115,7 @@
                 <div class="col-sm-8">
                   <input id="inp_text7" name="inp_text7" placeholder="Web" class="form-control" required value='' type="text">
                 </div>
-            </div>
+            </div> -->
 
             </div>
 
