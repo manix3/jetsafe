@@ -35,33 +35,8 @@ $(function() {
 
   $('#datatable-table-pedido').on('click','.edi_registro',function(e) {
     e.preventDefault()
-      $("input").val('')
-      var datos = ''
       var idr = $(this).attr('idr')
-      $.getJSON(base_url+'compras/list_tran/'+idr,function(data) {
-        $.each(data,function(i,item) {
-        datos += `
-        <tr><th>ID:</th><td>${item.transaccionid}</td></tr>
-        <tr><th>NOMBRE EMPRESA:</th><td>${item.nombre_comercial}</td></tr>
-        <tr><th>METODO DE PAGO:</th><td>${item.titulo}</td></tr>
-        <tr><th>TIPO OPERACION:</th><td>${item.tipooperacion}</td></tr>
-        <tr><th>NRO OPERACION:</th><td>${item.nrooperacion}</td></tr>
-        <tr><th>MONEDA:</th><td>${item.moneda}</td></tr>
-        <tr><th>TOTAL:</th><td>${parseFloat(item.total).toFixed(2)}</td></tr>
-        <tr><th>BANCO:</th><td>${item.banco}</td></tr>
-        <tr><th>ESTADO:</th><td>${item.titulo_estado}</td></tr>
-        <tr><th>FECHA:</th><td>${item.fecha}</td></tr>
-        <tr><th>VOUCHE:</th><td>${item.voucher}</td></tr>
-          `
-          // $('#fecha').val(item.fecha)
-          // $('#inp_text1').val(item.transaccionid)
-          // comboselect(null, base_url+'compras/comboselect', 'Seleccione estado', 'item.id','item.titulo', 'form_estado','estado')
-          // comboselect(null, base_url+'compras/comboselect_motivos', 'Seleccione motivo', 'item.id','item.titulo', 'form_estado','motivo')
-
-        })
-        $('#detalle_registro').html(datos)
-      })
-      $('#myModalver').modal('show')
+      window.open(base_url+'compras/ver_transaccion_detalle/'+idr,'_blank')
   })
 
   $('#form_estado_').submit(function(e) {

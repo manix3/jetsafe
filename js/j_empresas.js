@@ -52,7 +52,7 @@ $('#datatable-table').on('click','.bor_registro',function(e) {
     if (result.value) {
       modalSentData()
     }
-  })
+    })
 })
 
 
@@ -161,9 +161,18 @@ let accion = $("#accion").val()
     data : $('#form1').serialize(),
     type: 'POST',
     success:function(data){
-      $("#datatable-table").DataTable().destroy()
-      jalar_data();
-      $("#myModaledita").modal("hide");
+      if (data) {
+        $("#datatable-table").DataTable().destroy()
+        jalar_data();
+        $("#myModaledita").modal("hide");
+
+      } else {
+          Swal.fire(
+            'Hubo un error',
+            'La empresa puede tener pedidos asociados',
+            'error'
+          )
+      }
 
     },
     error:function(data) {

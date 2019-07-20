@@ -85,6 +85,7 @@ class Compras extends CI_Controller
       redirect('login','refresh');
     }
   }
+
   public function ver_usuarios($id)
   {
     if ($this->session->userdata('logged_in')) {
@@ -94,6 +95,21 @@ class Compras extends CI_Controller
       $this->load->view('includes/header');
       $this->load->view('includes/menu');
       $this->load->view('ver_usuarios',$view);
+      $this->load->view('includes/footer');
+    } else {
+      redirect('login','refresh');
+    }
+  }
+
+  public function ver_transaccion_detalle($id)
+  {
+    if ($this->session->userdata('logged_in')) {
+      $view['id'] = $id;
+
+      $this->load->view('includes/head');
+      $this->load->view('includes/header');
+      $this->load->view('includes/menu');
+      $this->load->view('ver_transaccion_detalle',$view);
       $this->load->view('includes/footer');
     } else {
       redirect('login','refresh');

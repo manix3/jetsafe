@@ -110,6 +110,10 @@
             <div class="col-sm-8">
               <select  name="estado"  class="form-control" id="estado">
                 <option value="">Selecciones Estado</option>
+                <option value="2">Depositado/Deposited</option>
+                <option value="3">En proceso/In process</option>
+                <option value="4">Aprobado/Approved</option>
+                <option value="5">Denegado/Denied</option>
                 <option value="6">Cargado/Loaded</option>
                 <option value="7">Entregado/Delivered</option>
               </select>

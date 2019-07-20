@@ -176,7 +176,7 @@
   </div>
 </div>
 
-<?php echo $this->load->view('includes/modalog'); ?>
+<?php $this->load->view('includes/modalog'); ?>
 
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>

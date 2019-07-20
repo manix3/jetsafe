@@ -25,9 +25,12 @@ class Modelo_compras extends CI_Model
 
   public function list_detalle($id)
   {
-    $sql = "SELECT e.titulo as titulo_estado,mp.titulo as titulo_metodo,  p.pedidoid, p.email,p.fecha,p.cantidad, p.total, p.observacion, p.tarjeta_numero,p.tarjeta_nombre,
-     p.tarjeta_fecha, p.tarjeta_cvv, p.subtotal, p.igv, p.idioma, p.metodopagoid, tran.voucher, tran.transaccionid FROM t_pedidos_transacciones pt JOIN t_pedidos p ON p.pedidoid = pt.pedidoid
-     JOIN t_metodos_pago mp ON mp.metodopagoid = p.metodopagoid JOIN t_estados_transaccion e ON e.id = p.estado JOIN t_transacciones tran ON tran.transaccionid = pt.transaccionid LEFT JOIN m_idioma mi ON mi.idiomaid = p.idioma WHERE pt.transaccionid = $id";
+    $sql = "SELECT e.titulo as titulo_estado,mp.titulo as titulo_metodo,p.*,
+     tran.voucher, tran.transaccionid FROM t_pedidos_transacciones pt JOIN t_pedidos p
+     ON p.pedidoid = pt.pedidoid JOIN t_metodos_pago mp ON mp.metodopagoid = p.metodopagoid
+     JOIN t_estados_pedido e ON e.estadopedidoid = p.estado JOIN t_transacciones tran
+     ON tran.transaccionid = pt.transaccionid LEFT JOIN m_idioma mi ON mi.idiomaid = p.idioma
+     WHERE pt.transaccionid = $id";
 
     $res = $this->db->query($sql);
     if ($res) {
@@ -54,11 +57,27 @@ class Modelo_compras extends CI_Model
 
   public function list_usuarios($id)
   {
-    $sql = "SELECT pd.*,pedido.email as pedido_email,pedido.observacion as observacion_pedi,pedido.*,prod.titulo as prod_titulo, pdet.cantidad, pdet.subtotal, pdet.fecha, mtp.titulo as titulo_metodo_pago, test.titulo as titulo_estado, emp.nombre_comercial, emp.email as email_empr,
-      pedi.observacion,pedi.idioma,tra.metodopagoid,pedi.tarjeta_numero,pedi.tarjeta_nombre,pedi.tarjeta_fecha,pedi.tarjeta_cvv,pdet.pedidodetalleid,pdet.pedidoid,pd.archivo FROM `t_pedidos_datos` pd JOIN t_pedidos_transacciones
-       pt ON pt.pedidoid = pd.pedidoid JOIN t_transacciones tra ON tra.transaccionid = pt.transaccionid JOIN t_empresas emp ON tra.empresaid = emp.empresaid JOIN t_pedidos_detalle pdet ON
-       pdet.pedidoid = pd.pedidoid JOIN t_productos prod ON pdet.productoid = prod.productoid JOIN t_metodos_pago mtp ON mtp.metodopagoid = tra.metodopagoid JOIN t_estados_transaccion test ON
-        test.id = tra.estado JOIN t_pedidos pedi on pedi.pedidoid = pt.pedidoid JOIN t_pedidos pedido ON pedido.pedidoid = pd.pedidoid WHERE pd.pedidoid = $id";
+    $sql = "SELECT pd.*
+            ,prod.titulo as prod_titulo,
+            pdet.cantidad, pdet.subtotal, pdet.fecha,
+            mtp.titulo as titulo_metodo_pago,
+            tesp.titulo as titulo_estado,
+            emp.nombre_comercial, emp.email as email_empr,
+            pedi.*,pedi.email as pedido_email,pedi.observacion as observacion_pedi,
+            pdet.pedidodetalleid,pdet.pedidoid
+            FROM t_pedidos pedi
+            JOIN t_pedidos_datos pd ON pd.pedidoid = pedi.pedidoid
+            JOIN t_empresas emp ON pedi.empresaid = emp.empresaid
+            JOIN t_pedidos_detalle pdet ON pdet.pedidoid = pd.pedidoid
+            JOIN t_productos prod ON pdet.productoid = prod.productoid
+            JOIN t_metodos_pago mtp ON mtp.metodopagoid = pedi.metodopagoid
+            JOIN t_estados_pedido tesp ON tesp.estadopedidoid = pedi.estado WHERE pedi.pedidoid = $id";
+
+    // $sql = "SELECT pd.*,pedido.email as pedido_email,pedido.observacion as observacion_pedi,pedido.*,prod.titulo as prod_titulo, pdet.cantidad, pdet.subtotal, pdet.fecha, mtp.titulo as titulo_metodo_pago, test.titulo as titulo_estado, emp.nombre_comercial, emp.email as email_empr,
+    //   pedi.observacion,pedi.idioma,tra.metodopagoid,pedi.tarjeta_numero,pedi.tarjeta_nombre,pedi.tarjeta_fecha,pedi.tarjeta_cvv,pdet.pedidodetalleid,pdet.pedidoid,pd.archivo FROM `t_pedidos_datos` pd JOIN t_pedidos_transacciones
+    //    pt ON pt.pedidoid = pd.pedidoid JOIN t_transacciones tra ON tra.transaccionid = pt.transaccionid JOIN t_empresas emp ON tra.empresaid = emp.empresaid JOIN t_pedidos_detalle pdet ON
+    //    pdet.pedidoid = pd.pedidoid JOIN t_productos prod ON pdet.productoid = prod.productoid JOIN t_metodos_pago mtp ON mtp.metodopagoid = tra.metodopagoid JOIN t_estados_transaccion test ON
+    //     test.id = tra.estado JOIN t_pedidos pedi on pedi.pedidoid = pt.pedidoid JOIN t_pedidos pedido ON pedido.pedidoid = pd.pedidoid WHERE pd.pedidoid = $id";
     $res = $this->db->query($sql);
     if ($res) {
       return $res->result();

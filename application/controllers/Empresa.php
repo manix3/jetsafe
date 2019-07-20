@@ -41,14 +41,14 @@ class Empresa extends CI_Controller {
     );
     $res = $this->Modelo_empresa->ins($data);
 
-    $this->send_email($this->input->post('inp_text6'),$data->clave);
+    $this->send_email($this->input->post('inp_text6'),$data->clave,$data->razon_social,$data->codigo_afiliacion);
 
     $this->output->set_content_type('application/json')
     ->set_output(json_encode($res));
   }
 
 
-  public function send_email($email,$clave)
+  public function send_email($email,$clave,$razon_social,$codigo_afiliacion)
   {
     $data = $this->Modelo_empresa->get_smtp();
     $config = array(
@@ -66,8 +66,8 @@ class Empresa extends CI_Controller {
       $this->email->set_newline("\r\n");
 
       //Email content
-      $htmlContent = '<h1>Contraseña de acceso</h1>';
-      $htmlContent .= "<p>Esta es la clave para el acceso a nuestra pagina web $clave</p>";
+      $htmlContent = "<h1>Contraseña de acceso para $razon_social</h1>";
+      $htmlContent .= "<p>Esta es la clave para el acceso a nuestra pagina web $clave y el codigo para acceso es $codigo_afiliacion</p>";
 
       $this->email->to($email);
       $this->email->from($data[5]->texto,$data[0]->texto);
@@ -98,8 +98,11 @@ class Empresa extends CI_Controller {
 
   public function del()
   {
-
-    $res = $this->Modelo_empresa->del($this->input->post('inp_text1'));
+    $res = false;
+    $condicion = $this->Modelo_empresa->is_deletable($this->input->post('inp_text1'));
+    if ($condicion) {
+      $res = $this->Modelo_empresa->del($this->input->post('inp_text1'));
+    }
     $this->output->set_content_type('application/json')
     ->set_output(json_encode($res));
   }
