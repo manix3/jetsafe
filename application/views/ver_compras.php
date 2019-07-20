@@ -4,8 +4,9 @@
 <!-- main page content. the place to put widgets in. usually consists of .row > .col-md-* > .widget.  -->
 <main id="content" class="content" role="main">
 
-
+  <button type="button" class="pull-right btn btn-primary" id="btnLog" style="margin-bottom: 12px;">Ver log</button>
   <h1>Lista de <span class="fw-semi-bold">Transaccion</span></h1>
+
 
 
     <section class="widget">
@@ -67,7 +68,9 @@
             </label>
             <div class="col-sm-8">
               <select  name="estado"  class="form-control" id="estado">
-
+                <option value="">Selecciones Estado</option>
+                <option value="1">Aprobado/Approved</option>
+                <option value="2">Denegado/Denied</option>
               </select>
             </div>
           </div>
@@ -130,14 +133,6 @@
               </div>
               <div class="form-group">
                 <label for="normal-field" class="col-sm-4 control-label">
-                  Fecha
-                </label>
-                <div class="col-sm-8">
-                  <input type="date" name="fecha_negada" class="form-control" id="fecha_negada" value="">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="normal-field" class="col-sm-4 control-label">
                   Observacion
                 </label>
                 <div class="col-sm-8">
@@ -180,6 +175,14 @@
     </div>
   </div>
 </div>
+
+<?php echo $this->load->view('includes/modalog'); ?>
+
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
 
 
 <?php $this->load->view('includes/scripts') ?>

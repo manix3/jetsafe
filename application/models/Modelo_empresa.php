@@ -18,6 +18,17 @@ class Modelo_empresa extends CI_Model
     }
   }
 
+  public function get_smtp()
+  {
+    $sql = "SELECT * FROM `m_config` WHERE id IN (1016,1017,1018,1019,1015,1022)";
+    $res = $this->db->query($sql);
+    if ($res) {
+      return $res->result();
+    } else {
+      return false;
+    }
+  }
+
   public function ins($datos)
   {
       $id_tabla = $this->db->get_where('m_tabla', array('tablnombre' => 't_empresas' ))->result()[0]->tablcorrelativo;

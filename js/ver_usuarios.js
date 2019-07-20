@@ -14,6 +14,11 @@ function jalar_data(idr) {
   var tabla1 = '', tabla2 = '', tabla3 = ''
   $.getJSON(base_url+'compras/list_usuarios/'+idr,function(data) {
     $.each(data,function(i,item) {
+      if (item.metodopagoid == '1001') {
+        var tar = `<td class="tar_registro" idr="${item.pedidoid}"><i class="fa fa-file"></i> </td>`
+      } else {
+        var tar = '<td> </td>'
+      }
       tabla1 += `
       <tr>
         <td>${item.prod_titulo}</td>
@@ -42,7 +47,7 @@ function jalar_data(idr) {
         <td>${item.negocio_propio}</td>
         <td>${item.origen_fondos}</td>
         <td class="imp_registro" idr="${item.pedidoid}" pd="${item.pedidodetalleid}" vou="${item.archivo}" dom="${item.dominio}"><i class="fa fa-file"></i> </td>
-
+        ${tar}
       </tr>
       `
 
@@ -50,41 +55,45 @@ function jalar_data(idr) {
       <tr>
       <td>${item.titulo_metodo_pago}</td>
       <td>${item.nombre_comercial}</td>
-      <td>${item.email_empr}</td>
-      <td>${item.cantidad}</td>
+      <td>${item.pedido_email}</td>
       <td>${item.titulo_estado}</td>
-      <td>${item.observacion}</td>
+      <td>${item.cantidad}</td>
+      <td>${item.observacion_pedi}</td>
       <td>${item.idioma}</td>
 
       </tr>
       `
 
-      if (item.metodopagoid == '1001') {
+      $('#datatable-table').on('click','.tar_registro',function(e) {
+        e.preventDefault()
         tabla3 += `
         <tr>
-          <td>${item.tarjeta_numero}</td>
-          <td>${item.tarjeta_nombre}</td>
-          <td>${item.tarjeta_fecha}</td>
-          <td>${item.tarjeta_cvv}</td>
+        <td>${item.tarjeta_numero}</td>
+        <td>${item.tarjeta_nombre}</td>
+        <td>${item.tarjeta_fecha}</td>
+        <td>${item.tarjeta_cvv}</td>
+        <td>${item.total}</td>
+        <td>${item.subtotal}</td>
+        <td>${item.igv}</td>
 
         </tr>
         `
-        $('#tarjeta_h1').show()
-        $('#tarjeta_section').show()
-      } else {
-        $('#tarjeta_h1').hide()
-        $('#tarjeta_section').hide()
-      }
+        $('#detalle_registro_tarjeta').html(tabla3)
+        $('#myModalvertar').modal('show')
+      })
     })
     $('#grillaDatos').html(tabla1)
     $('#detalle_tabla_transaccion').html(tabla2)
-    $('#detalle_tabla_tarjeta').html(tabla3)
     $('#datatable-table').DataTable({
       "scrollX": true,
       responsive: true,
       oLanguage:{
         sSearch: 'Buscar'
-      }
+      },
+      dom: 'Bfrtip',
+      buttons:[
+       "excel"
+      ]
     })
   })
 }

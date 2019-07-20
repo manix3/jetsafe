@@ -7,6 +7,7 @@
 
 
     <span id="id_trans" style="font-size: 25px;font-weight: bold;"></span>
+    <button type="button" class="pull-right btn btn-primary" id="btnLog" style="margin-bottom: 12px;">Ver log</button>
 
 
       <h1><span class="fw-semi-bold">Empresa</span></h1>
@@ -42,7 +43,7 @@
             <th>BANCO</th>
             <th>NRO OPERACION</th>
             <th>ESTADO</th>
-            <th>EDITAR</th>
+            <th>VER</th>
           </tr>
       </thead>
       <tbody id="detalle_tabla_">
@@ -108,7 +109,9 @@
             </label>
             <div class="col-sm-8">
               <select  name="estado"  class="form-control" id="estado">
-
+                <option value="">Selecciones Estado</option>
+                <option value="6">Cargado/Loaded</option>
+                <option value="7">Entregado/Delivered</option>
               </select>
             </div>
           </div>
@@ -298,6 +301,13 @@
   </div>
 </div>
 
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+
+<?php $this->load->view('includes/modalog') ?>
 <?php $this->load->view('includes/scripts') ?>
 <script type="text/javascript">
   const IDR = '<?php echo $id ?>'

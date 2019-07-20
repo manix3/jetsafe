@@ -30,7 +30,7 @@
               <div class="col-md-8">
                 <section class="widget">
                   <header>
-                      <h4>N° DE SERVICIOS POR <span class="fw-semi-bold">TIPO</span></h4>
+                      <h4>N° DE PEDIDOS POR <span class="fw-semi-bold">DIA</span></h4>
                   </header>
                   <div class="widget-body"  style="max-height: 350px ">
                     <canvas id="barLastDay" height="130" ></canvas>

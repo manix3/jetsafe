@@ -143,7 +143,7 @@ class Compras extends CI_Controller
       //upd de pedidos
       $id_pedidos = $this->Modelo_compras->get_id_pedidos($id);
       foreach ($id_pedidos as $k => $v) {
-        $this->Modelo_compras->upd_pedidos_por_id($v->pedidoid,array('estado' => $this->input->post('estado')));
+        $this->Modelo_compras->upd_pedidos_por_id($v->pedidoid,array('estado' => 4));
         $datos_log[] = array(
           'pedidoid' => $v->pedidoid,
           'estado' => $this->input->post('estado'),
@@ -164,7 +164,7 @@ class Compras extends CI_Controller
         'nroorden' => $this->input->post('nro_orden'),
         'motivoid' => $this->input->post('motivo'),
         'motivodescripcion' => $this->input->post('descripcion'),
-        'fecha' => $this->input->post('fecha_negada')
+        'fecha' => date('Y-m-d H:i:s'),
       );
 
       //datos t_transacciones_estado
@@ -184,12 +184,12 @@ class Compras extends CI_Controller
       //upd de pedidos
       $id_pedidos = $this->Modelo_compras->get_id_pedidos($id);
       foreach ($id_pedidos as $k => $v) {
-        $this->Modelo_compras->upd_pedidos_por_id($v->pedidoid,array('estado' => $this->input->post('estado')));
+        $this->Modelo_compras->upd_pedidos_por_id($v->pedidoid,array('estado' => 5));
         $datos_log[] = array(
           'pedidoid' => $v->pedidoid,
           'estado' => $this->input->post('estado'),
           'observacion' => $this->input->post('observacion_negada'),
-          'fecha' => $this->input->post('fecha_negada')
+          'fecha' => date('Y-m-d H:i:s')
         );
       }
 
@@ -224,6 +224,19 @@ class Compras extends CI_Controller
     ->set_output(json_encode($res));
   }
 
+
+  public function get_log($tipo,$id=null)
+  {
+    $res = array();
+    if ($tipo == '0') {
+      $res = $this->Modelo_compras->get_log_transaccion();
+    } elseif ($tipo == '1') {
+      $res = $this->Modelo_compras->get_log_pedidos($id);
+    }
+
+    $this->output->set_content_type('application/json')
+    ->set_output(json_encode($res));
+  }
 
 }
  ?>

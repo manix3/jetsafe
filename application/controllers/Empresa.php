@@ -5,6 +5,7 @@ class Empresa extends CI_Controller {
 
   public function __construct(){
     parent::__construct();
+    $this->load->library('email');
     $this->load->model('Modelo_empresa');
   }
 
@@ -38,12 +39,45 @@ class Empresa extends CI_Controller {
        'email' => $this->input->post('inp_text6'),
        'clave' => $this->hash(),
     );
-
     $res = $this->Modelo_empresa->ins($data);
+
+    $this->send_email($this->input->post('inp_text6'),$data->clave);
 
     $this->output->set_content_type('application/json')
     ->set_output(json_encode($res));
   }
+
+
+  public function send_email($email,$clave)
+  {
+    $data = $this->Modelo_empresa->get_smtp();
+    $config = array(
+    'protocol'  => 'smtp',
+    'smtp_host' => 'ssl://'.$data[1]->texto,
+    'smtp_port' => '465',
+    'smtp_user' => $data[2]->texto,
+    'smtp_pass' => $data[3]->texto,
+    'mailtype'  => 'html',
+    'charset'   => 'utf-8'
+      );
+      // print_r($config);
+      $this->email->initialize($config);
+      $this->email->set_mailtype("html");
+      $this->email->set_newline("\r\n");
+
+      //Email content
+      $htmlContent = '<h1>Contraseña de acceso</h1>';
+      $htmlContent .= "<p>Esta es la clave para el acceso a nuestra pagina web $clave</p>";
+
+      $this->email->to($email);
+      $this->email->from($data[5]->texto,$data[0]->texto);
+      $this->email->subject('Contraseña para el ingreso a nuestra red con el registro de tu empresa');
+      $this->email->message($htmlContent);
+
+      //Send email
+      return $this->email->send();
+  }
+
 
   public function upd()
   {

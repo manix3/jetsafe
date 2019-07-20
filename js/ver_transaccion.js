@@ -1,6 +1,24 @@
 $(function() {
   jalar_data(IDR)
 
+  $('#btnLog').click(function() {
+    var log = ''
+    $.getJSON(base_url+'compras/get_log/'+1+'/'+IDR,function(data) {
+      $.each(data,function(i,item) {
+      log += `
+      <tr>
+        <td>Pedido id:${item.pedidoid}</td>
+        <td>${item.titulo}</td>
+        <td>${item.observacion}</td>
+        <td>${item.fecha}</td>
+      </tr>
+        `
+      })
+      $('#log').html(log)
+    })
+    $('#myModalog').modal('show')
+  })
+
   $('#datatable-table-pedidos').on('click','.ver_registro',function(e) {
     e.preventDefault()
     var idr = $(this).attr('idr')
@@ -90,20 +108,19 @@ $(function() {
           $("input").val('')
           var datos = ''
           var idr = $(this).attr('idr')
-          comboselect(null, base_url+'compras/comboselect', 'Seleccione estado', 'item.id','item.titulo', 'form_estado_','estado')
 
           $.getJSON(base_url+'compras/modal_tramites/'+idr,function(data) {
             $.each(data,function(i,item) {
             datos += `
             <tr><th>ID:</th><td>${item.pedidoid}</td></tr>
-            <tr><th>NOMBRE EMPRESA:</th><td>${item.nombre_comercial}</td></tr>
-            <tr><th>METODO DE PAGO:</th><td>${item.titulo_estado}</td></tr>
-            <tr><th>MONEDA:</th><td>${parseFloat(item.total).toFixed(2)}</td></tr>
-            <tr><th>BANCO:</th><td>${item.banco}</td></tr>
+            <tr><th>METODO DE PAGO:</th><td>${item.titulo_metodo_pago}</td></tr>
+            <tr><th>EMAIL:</th><td>${item.email}</td></tr>
+            <tr><th>CANTIDAD:</th><td>${item.cantidad}</td></tr>
+            <tr><th>TOTAL:</th><td>${parseFloat(item.total).toFixed(2)}</td></tr>
             <tr><th>ESTADO:</th><td>${item.titulo_estado}</td></tr>
-            <tr><th>FECHA:</th><td>${item.fecha}</td></tr>
+            <tr><th>SUBTOTAL:</th><td>${item.subtotal}</td></tr>
+            <tr><th>IGV:</th><td>${item.igv}</td></tr>
               `
-              $('#fecha').val(item.fecha)
               $('#form_estado_ #inp_text1').val(item.pedidoid)
 
             })
@@ -193,7 +210,11 @@ function jalar_data(idr) {
         "scrollX":true,
         oLanguage:{
           sSearch: 'Buscar:'
-        }
+        },
+        dom: 'Bfrtip',
+        buttons:[
+         "excel"
+        ]
       })
     })
 }
