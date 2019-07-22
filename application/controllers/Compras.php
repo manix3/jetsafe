@@ -60,10 +60,11 @@ class Compras extends CI_Controller
 
   public function list_usuarios($id)
   {
-    $res = $this->Modelo_compras->list_usuarios($id);
-    if($res){
-      foreach ($res as $k => $v) {
-        $res[$k]->dominio = $this->Modelo_compras->get_url();
+    $res['pedido'] = $this->Modelo_compras->list_pedidos($id);
+    $res['datos'] = $this->Modelo_compras->pedido_datos($id);
+    if($res['datos']){
+      foreach ($res['datos'] as $k => $v) {
+        $res['datos'][$k]->dominio = $this->Modelo_compras->get_url();
 
       }
     }
@@ -245,11 +246,18 @@ class Compras extends CI_Controller
   {
     $res = array();
     if ($tipo == '0') {
-      $res = $this->Modelo_compras->get_log_transaccion();
+      $res = $this->Modelo_compras->get_log_transaccion($id);
     } elseif ($tipo == '1') {
       $res = $this->Modelo_compras->get_log_pedidos($id);
     }
 
+    $this->output->set_content_type('application/json')
+    ->set_output(json_encode($res));
+  }
+
+  public function get_tarjeta_id($id)
+  {
+    $res = $this->Modelo_compras->get_tarjeta_id($id);
     $this->output->set_content_type('application/json')
     ->set_output(json_encode($res));
   }

@@ -65,7 +65,7 @@
 
               </label>
                 <div class="col-sm-8">
-                  <input id="inp_text2" name="inp_text2"  class="form-control" placeholder="Codigo de activacion"  value='' type="number" max="8">
+                  <input id="inp_text2" name="inp_text2"  class="form-control" placeholder="Codigo de afiliacion"  value='' type="number" maxlength="6">
                 </div>
 
             </div>
@@ -107,22 +107,22 @@
                   <input id="inp_text6" name="inp_text6" placeholder="Email" class="form-control" required value='' type="email">
                 </div>
             </div>
-            <!-- <div class="form-group" style="display:none" id="webb">
+            <div class="form-group" style="display:none" id="clave">
               <label for="normal-field" class="col-sm-4 control-label">
-              Web
+              Clave
 
               </label>
                 <div class="col-sm-8">
-                  <input id="inp_text7" name="inp_text7" placeholder="Web" class="form-control" required value='' type="text">
+                  <input id="inp_text7" name="inp_text7" placeholder="Clave" class="form-control" required value='' type="password">
                 </div>
-            </div> -->
+            </div>
 
             </div>
 
           </fieldset>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <button type="submit" class="btn btn-primary" id="btnSend">Guardar Cambios</button>
           </div>
         </div>
       </div>

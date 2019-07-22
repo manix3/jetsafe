@@ -9,7 +9,7 @@ $(function() {
       <tr>
         <td>Transaccion id:${item.transaccionid}</td>
         <td>${item.titulo}</td>
-        <td>${item.observacion}</td>
+        <td>${item.observacion != null ? item.observacion : ' '}</td>
         <td>${item.fecha}</td>
       </tr>
         `
@@ -22,7 +22,7 @@ $(function() {
   $('#datatable-table').on('click','.ver_registro',function(e) {
     e.preventDefault()
       var idr = $(this).attr('idr')
-    location.href = base_url+'compras/ver/'+idr
+    window.open(`${base_url}compras/ver/${idr}`,'_blank')
 
   })
 
@@ -110,7 +110,7 @@ function jalar_data() {
   $.getJSON(base_url+`compras/list_tran`,function(data) {
     $.each(data,function(i,item) {
       if (item.metodopagoid != '1001') {
-          var imp = `<td class="imp_registro" idr="${item.transaccionid}" vou="${item.voucher}" dom="${item.dominio}"><i class="fa fa-file"></i> </td>`
+          var imp = `<td class="imp_registro" idr="${item.transaccionid}" vou="${item.voucher}" dom="${item.dominio}"><i class="fa fa-file"></i> <span style="display:none">${item.dominio}/upload/${item.transaccionid}/${item.voucher}</span> </td>`
       } else {
         var imp = '<td> </td>'
       }
@@ -136,6 +136,7 @@ function jalar_data() {
     })
     $('#grillaDatos').html(table)
     $('#datatable-table').DataTable({
+      order: [[0,'DESC']],
       "scrollX": true,
       responsive: true,
       oLanguage:{

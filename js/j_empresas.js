@@ -7,7 +7,7 @@ $("#btnNuevo").click(function () {
   $('input').val('')
   $("select").val('')
   $("#accion").val('nuevo')
-
+  $('#clave').hide()
   $("#myModaledita").modal('show')
   $("#title").html('Nuevo')
 })
@@ -15,6 +15,7 @@ $("#btnNuevo").click(function () {
 $("#form1").on('submit',function(e) {
   e.preventDefault()
   e.stopImmediatePropagation()
+  $('#btnSend').attr('disabled',true);
   modalSentData()
 })
 
@@ -31,6 +32,7 @@ $('#datatable-table').on('click','.edi_registro',function(e) {
   e.preventDefault()
   var idr = $(this).attr('idr')
   modalData(idr,'edi_registro')
+  $('#clave').show()
   $('#accion').val('editar')
   $('#title').html('Editar')
   $('#myModaledita').modal('show')
@@ -88,7 +90,6 @@ function modalData(idr,type) {
                 $("#inp_text4").val(item.razon_social)
                 $("#inp_text5").val(item.nombre_comercial)
                 $("#inp_text6").val(item.email)
-                $("#inp_text7").val(item.web)
 
 
               })
@@ -165,6 +166,7 @@ let accion = $("#accion").val()
         $("#datatable-table").DataTable().destroy()
         jalar_data();
         $("#myModaledita").modal("hide");
+        $('#btnSend').removeAttr('disabled');
 
       } else {
           Swal.fire(
@@ -172,6 +174,8 @@ let accion = $("#accion").val()
             'La empresa puede tener pedidos asociados',
             'error'
           )
+          $('#btnSend').removeAttr('disabled');
+          
       }
 
     },

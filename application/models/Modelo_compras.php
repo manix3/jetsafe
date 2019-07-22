@@ -55,20 +55,19 @@ class Modelo_compras extends CI_Model
     }
   }
 
-  public function list_usuarios($id)
+  public function list_pedidos($id)
   {
-    $sql = "SELECT pd.*
-            ,prod.titulo as prod_titulo,
-            pdet.cantidad, pdet.subtotal, pdet.fecha,
-            mtp.titulo as titulo_metodo_pago,
+    $sql = "SELECT
+            prod.titulo as prod_titulo,
+            pdet.cantidad as cantidad_detalle, pdet.subtotal, pdet.fecha,
+            mtp.titulo as titulo_metodo_pago,mtp.metodopagoid,
             tesp.titulo as titulo_estado,
             emp.nombre_comercial, emp.email as email_empr,
             pedi.*,pedi.email as pedido_email,pedi.observacion as observacion_pedi,
             pdet.pedidodetalleid,pdet.pedidoid
             FROM t_pedidos pedi
-            JOIN t_pedidos_datos pd ON pd.pedidoid = pedi.pedidoid
             JOIN t_empresas emp ON pedi.empresaid = emp.empresaid
-            JOIN t_pedidos_detalle pdet ON pdet.pedidoid = pd.pedidoid
+            JOIN t_pedidos_detalle pdet ON pdet.pedidoid = pedi.pedidoid
             JOIN t_productos prod ON pdet.productoid = prod.productoid
             JOIN t_metodos_pago mtp ON mtp.metodopagoid = pedi.metodopagoid
             JOIN t_estados_pedido tesp ON tesp.estadopedidoid = pedi.estado WHERE pedi.pedidoid = $id";
@@ -86,6 +85,19 @@ class Modelo_compras extends CI_Model
     }
 
   }
+
+  public function pedido_datos($id)
+  {
+    $sql ="SELECT *,(SELECT titulo FROM t_productos WHERE productoid = t1.productoid) AS producto FROM t_pedidos t0, t_pedidos_detalle t1, t_pedidos_datos t2 WHERE t0.pedidoid = t1.pedidoid AND t0.pedidoid = t2.pedidoid AND t1.pedidodetalleid = t2.pedidodetalleid AND t1.pedidoid = $id";
+    $res = $this->db->query($sql);
+    if ($res) {
+      return $res->result();
+    } else {
+      return false;
+    }
+
+  }
+
 
   public function comboselect()
   {
@@ -231,8 +243,11 @@ class Modelo_compras extends CI_Model
     }
   }
 
-  public function get_log_transaccion()
+  public function get_log_transaccion($id)
   {
+    if ($id != null) {
+      $this->db->where('transaccionid',$id);
+    }
     $this->db->select('*');
     $this->db->from('t_transacciones_estado');
     $this->db->join('t_estados_transaccion estr','estr.id = t_transacciones_estado.estado');

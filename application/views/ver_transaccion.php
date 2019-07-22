@@ -110,10 +110,6 @@
             <div class="col-sm-8">
               <select  name="estado"  class="form-control" id="estado">
                 <option value="">Selecciones Estado</option>
-                <option value="2">Depositado/Deposited</option>
-                <option value="3">En proceso/In process</option>
-                <option value="4">Aprobado/Approved</option>
-                <option value="5">Denegado/Denied</option>
                 <option value="6">Cargado/Loaded</option>
                 <option value="7">Entregado/Delivered</option>
               </select>
@@ -150,7 +146,13 @@
 
       <div class="modal-body">
         <table class="table table-striped">
+          <thead>
+            <th>Id dato</th>
+            <th>Estado</th>
+            <th>Observacion</th>
+            <th>Fecha</th>
 
+          </thead>
             <tbody id="detalle_registro_">
 
             </tbody>
@@ -179,7 +181,7 @@
 
       </div>
 
-      <!-- <fieldset>
+      <fieldset>
 
         <form class="form_estado" id="form_estado" action="" method="post">
           <input type="hidden" name="inp_text1" id="inp_text1" value="">
@@ -187,11 +189,13 @@
 
           <div class="form-group">
             <label for="normal-field" class="col-sm-4 control-label">
-              Nro operacion
+              Estado
             </label>
             <div class="col-sm-8">
               <select  name="estado"  class="form-control" id="estado">
-
+                <option value="">Seleccione estado</option>
+                <option value="1">Aprobado</option>
+                <option value="2">Denegado</option>
               </select>
             </div>
           </div>
@@ -282,13 +286,19 @@
 
 
       </form>
-      </fieldset> -->
+      </fieldset>
 
 
 
       <div class="modal-body">
         <table class="table table-striped">
+          <thead>
+            <th>Id dato</th>
+            <th>Estado</th>
+            <th>Observacion</th>
+            <th>Fecha</th>
 
+          </thead>
             <tbody id="detalle_registro">
 
             </tbody>

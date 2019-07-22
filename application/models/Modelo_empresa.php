@@ -66,7 +66,9 @@ class Modelo_empresa extends CI_Model
 
   public function is_deletable($id)
   {
-    $res =  $this->db->get_where('t_pedidos', array('empresaid' => $id, ));
+    $this->db->where('empresaid',$id);
+    $this->db->from('t_pedidos');
+    $res = $this->db->get(); 
     if ($res->num_rows() > 0) {
       return true;
     } else {

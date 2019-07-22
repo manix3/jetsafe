@@ -27,6 +27,7 @@
 
 
         <ul class="sidebar-nav">
+          <?php if ($this->session->userdata('logged_in')['SES_TIPO'] == '1'): ?>
 
           <li class="">
               <a class="collapsed" href="#sidebar_bancos" data-toggle="collapse" data-parent="#bancos_sidebar" aria-expanded="false">
@@ -46,6 +47,8 @@
 
 
 
+
+
           <li class="" id="cate_menu">
               <a class="collapsed" href="#cat_sidebar-tables" data-toggle="collapse" data-parent="#cat_sidebar" aria-expanded="false">
                   <span class="icon">
@@ -61,7 +64,25 @@
 
               </ul>
           </li>
+          <?php endif; ?>
 
+          <?php if ($this->session->userdata('logged_in')['SES_TIPO'] == '2'): ?>
+
+          <li class="">
+              <a class="collapsed" href="#sidebar_bancos" data-toggle="collapse" data-parent="#bancos_sidebar" aria-expanded="false">
+                  <span class="icon">
+                      <i class="fa fa-money"></i>
+                  </span>
+                  Gestion
+                  <i class="toggle fa fa-angle-down"></i>
+              </a>
+              <ul id="sidebar_bancos" class="collapse" aria-expanded="false" style="height: 0px;">
+
+                  <li><a href="<?php echo base_url(); ?>empresa">Empresa</a></li>
+              </ul>
+          </li>
+          <?php endif; ?>
+          
           <li class="" id="coti_mantenimiento_moneda">
               <a class="collapsed" href="#sidebar-tables" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
                   <span class="icon">

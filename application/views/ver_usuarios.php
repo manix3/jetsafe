@@ -2,13 +2,38 @@
 
   <main id="content" class="content" role="main">
 
+    <h1><span class="fw-semi-bold">Pedidos</span></h1>
+  <section class="widget">
+
+    <table id="datatable-table-transaccion" class="table table-striped table-hover">
+    <thead>
+        <tr>
+          <th>METODO PAGO</th>
+          <th>EMPRESA</th>
+          <th>EMAIL</th>
+          <th>ESTADO</th>
+          <th>CANTIDAD</th>
+          <th>OBSERVACION</th>
+          <th>IDIOMA</th>
+        </tr>
+    </thead>
+    <tbody id="detalle_tabla_transaccion">
+
+
+    </tbody>
+
+  </table>
+  </section>
+
+
+
 
       <h1><span class="fw-semi-bold">Usuarios</span></h1>
 
     <section class="widget">
 
       <table id="datatable-table" class="table table-striped table-hover">
-      <thead>
+      <thead id="tabla_head">
           <tr>
             <th>PRODUCTO</th>
             <th>CANTIDAD</th>
@@ -35,8 +60,11 @@
             <th>CENTRO LABORAL</th>
             <th>NEGOCIO PROPIO</th>
             <th>ORIGEN FONDOS</th>
+            <th>CVV</th>
+            <th>FECHA</th>
+            <th>NOMBRE</th>
+            <th>NUMERO</th>
             <th>ARCHIVOS</th>
-            <th>TARJETA</th>
           </tr>
       </thead>
       <tbody id="grillaDatos">
@@ -48,28 +76,7 @@
     </section>
 
 
-    <h1><span class="fw-semi-bold">Pedidos</span></h1>
-  <section class="widget">
 
-    <table id="datatable-table-transaccion" class="table table-striped table-hover">
-    <thead>
-        <tr>
-          <th>METODO PAGO</th>
-          <th>EMPRESA</th>
-          <th>EMAIL</th>
-          <th>ESTADO</th>
-          <th>CANTIDAD</th>
-          <th>OBSERVACION</th>
-          <th>IDIOMA</th>
-        </tr>
-    </thead>
-    <tbody id="detalle_tabla_transaccion">
-
-
-    </tbody>
-
-  </table>
-  </section>
 
   </main>
 </div>
