@@ -35,28 +35,18 @@ $(function() {
 
 function jalar_data(idr) {
   var tabla1 = '',tabla2 = ''
-  var tar = ''
   $.getJSON(base_url+'compras/list_usuarios/'+idr,function(data) {
     $.each(data.pedido, function(i,item) {
-      if (item.metodopagoid == '1001') {
-        tar = `<td> </td>`
-        // tar = `<td>${item.tarjeta_cvv}</td>
-        //        <td>${item.tarjeta_fecha}</td>
-        //        <td>${item.tarjeta_nombre}</td>
-        //        <td>${item.tarjeta_numero}</td>
-        //         `
-      } else {
-        tar = '<td> </td>'
-      }
+
       tabla2 += `
       <tr>
-      <td>${item.titulo_metodo_pago}</td>
-      <td>${item.nombre_comercial}</td>
-      <td>${item.pedido_email}</td>
-      <td>${item.titulo_estado}</td>
-      <td>${item.cantidad_detalle}</td>
-      <td>${item.observacion_pedi}</td>
-      <td>${item.idioma}</td>
+      <td>${item.titulo != null ? item.titulo : ' '}</td>
+      <td>${item.nombre_comercial != null ? item.nombre_comercial : ' '}</td>
+      <td>${item.email != null ? item.email : ' '}</td>
+      <td>${item.titulo_estado != null ? item.titulo_estado : ' '}</td>
+      <td>${item.cantidad != null ? item.cantidad : ' '}</td>
+      <td>${item.observacion != null ? item.observacion : ' '}</td>
+      <td>${item.idioma != null ? item.idioma : ' '}</td>
 
       </tr>
       `

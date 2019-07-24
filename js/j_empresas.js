@@ -1,61 +1,89 @@
-jalar_data()
+$(function() {
+  jalar_data()
 
 
+  $("#btnNuevo").click(function () {
+    $('input').val('')
+    $("select").val('')
+    $("#accion").val('nuevo')
+    $("#myModaledita").modal('show')
+    $("#title").html('Nuevo')
+  })
 
+  $("#form1").on('submit',function(e) {
+    e.preventDefault()
+    e.stopImmediatePropagation()
+    $('#form1 #btnSend').attr('disabled',true);
+    modalSentData()
+  })
 
-$("#btnNuevo").click(function () {
-  $('input').val('')
-  $("select").val('')
-  $("#accion").val('nuevo')
-  $('#clave').hide()
-  $("#myModaledita").modal('show')
-  $("#title").html('Nuevo')
-})
+  $('#datatable-table').on('click','.ver_registro',function(e) {
+    e.preventDefault()
 
-$("#form1").on('submit',function(e) {
-  e.preventDefault()
-  e.stopImmediatePropagation()
-  $('#btnSend').attr('disabled',true);
-  modalSentData()
-})
+    var idr = $(this).attr('idr')
+    $('#title').html('Ver')
+    modalData(idr,'ver_registro')
+    $('#myModalver').modal('show')
+  })
 
-$('#datatable-table').on('click','.ver_registro',function(e) {
-  e.preventDefault()
+  $('#datatable-table').on('click','.clv_registro',function(e) {
+    e.preventDefault()
 
-  var idr = $(this).attr('idr')
-  $('#title').html('Ver')
-  modalData(idr,'ver_registro')
-  $('#myModalver').modal('show')
-})
+    var idr = $(this).attr('idr');
+    $('#form_pass input').val('')
+    $('#form_pass #inp_text1').val(idr)
+    $('#myModaleditaClave #title').html('Editar')
+    $('#myModaleditaClave').modal('show')
 
-$('#datatable-table').on('click','.edi_registro',function(e) {
-  e.preventDefault()
-  var idr = $(this).attr('idr')
-  modalData(idr,'edi_registro')
-  $('#clave').show()
-  $('#accion').val('editar')
-  $('#title').html('Editar')
-  $('#myModaledita').modal('show')
-})
-$('#datatable-table').on('click','.bor_registro',function(e) {
-  e.preventDefault()
-  var idr = $(this).attr('idr')
-  modalData(idr,'bor_registro')
-  $('#accion').val('borrar')
-  Swal.fire({
-  title: 'Estas seguro?',
-  text: "No podras obtener este dato de nuevo",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, borrar!'
-  }).then((result) => {
-    if (result.value) {
-      modalSentData()
-    }
+  })
+
+  $('#form_pass').submit(function(e) {
+    e.preventDefault()
+    $('#form_pass #btnSend').attr('disabled',true);
+    $.ajax({
+      url: base_url+'empresa/upd_clave',
+      data: $(this).serialize(),
+      type: 'POST',
+      success: function () {
+        $('#form_pass #btnSend').removeAttr('disabled')
+        jalar_data()
+        $('#myModaleditaClave').modal('hide')
+      }
     })
+  })
+
+  $('#datatable-table').on('click','.edi_registro',function(e) {
+    e.preventDefault()
+    var idr = $(this).attr('idr')
+    modalData(idr,'edi_registro')
+    $('#accion').val('editar')
+    $('#title').html('Editar')
+    $('#myModaledita').modal('show')
+  })
+  $('#datatable-table').on('click','.bor_registro',function(e) {
+    e.preventDefault()
+    var idr = $(this).attr('idr')
+    modalData(idr,'bor_registro')
+    $('#accion').val('borrar')
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: "No podras obtener este dato de nuevo",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borrar!'
+    }).then((result) => {
+      if (result.value) {
+        modalSentData()
+      }
+    })
+  })
+
 })
+
+
+
 
 
 
@@ -112,6 +140,7 @@ function modalData(idr,type) {
 
   function jalar_data() {
     datatable = ''
+    $('#datatable-table').dataTable().fnDestroy()
     $.getJSON(base_url+'empresa/list_emp', function(data){
       $.each(data, function (i,item) {
         datatable += `
@@ -122,6 +151,7 @@ function modalData(idr,type) {
           <td class="ver_registro" idr="${item.empresaid}" ><i class="fa fa-search"></i> </td>
           <td class="edi_registro" idr="${item.empresaid}"><i class="fa fa-pencil"></i> </td>
           <td class="bor_registro" idr="${item.empresaid}"><i class="fa fa-trash-o"></i> </td>
+          <td class="clv_registro" idr="${item.empresaid}"><i class="fa fa-lock"></i> </td>
         </tr>
                     `;
 
@@ -158,7 +188,7 @@ let accion = $("#accion").val()
 
   }
   $.ajax({
-    url:`${base_url}/empresa/${destino}`,
+    url:`${base_url}empresa/${destino}`,
     data : $('#form1').serialize(),
     type: 'POST',
     success:function(data){
@@ -175,7 +205,7 @@ let accion = $("#accion").val()
             'error'
           )
           $('#btnSend').removeAttr('disabled');
-          
+
       }
 
     },

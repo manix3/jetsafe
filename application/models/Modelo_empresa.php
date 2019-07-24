@@ -64,11 +64,22 @@ class Modelo_empresa extends CI_Model
   }
 
 
+  public function get_data_for_mail($id)
+  {
+    $sql = "SELECT email,razon_social,codigo_afiliacion,nombre_comercial FROM `t_empresas` WHERE empresaid = $id";
+    $res = $this->db->query($sql)->result();
+    if ($res) {
+      return $res[0];
+    } else {
+      return false;
+    }
+  }
+
   public function is_deletable($id)
   {
     $this->db->where('empresaid',$id);
     $this->db->from('t_pedidos');
-    $res = $this->db->get(); 
+    $res = $this->db->get();
     if ($res->num_rows() > 0) {
       return true;
     } else {

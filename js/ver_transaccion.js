@@ -173,6 +173,11 @@ function jalar_data(idr) {
           var imp = '<td> </td>'
         }
 
+        if (etim.estado == '5') {
+          var editar = '<td> </td>'
+        } else {
+          var editar = `<td idr="${etim.pedidoid}" class="edi_registro"><i class="fa fa-pencil"></i></td>`
+        }
         tabla_pen += `
         <tr>
           <td>${etim.pedidoid}</td>
@@ -185,7 +190,7 @@ function jalar_data(idr) {
           <td>${etim.igv != null ? etim.igv : ' '}</td>
           <td>${etim.idioma != null ? etim.idioma : ' '}</td>
           ${imp}
-          <td idr="${etim.pedidoid}" class="edi_registro"><i class="fa fa-pencil"></i></td>
+          ${editar}
           <td idr="${etim.pedidoid}" class="ver_registro"><i class="fa fa-search"></i></td>
         </tr>
         `

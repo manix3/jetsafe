@@ -41,6 +41,7 @@ class Empresa extends CI_Controller {
        'razon_social' => $this->input->post('inp_text4'),
        'nombre_comercial' => $this->input->post('inp_text5'),
        'email' => $this->input->post('inp_text6'),
+       'fecha' => date('Y-m-d H:i:s'),
        'clave' => $this->hash($rand),
     );
     $res = $this->Modelo_empresa->ins($data);
@@ -59,18 +60,36 @@ class Empresa extends CI_Controller {
        'razon_social' => $this->input->post('inp_text4'),
        'nombre_comercial' => $this->input->post('inp_text5'),
        'email' => $this->input->post('inp_text6'),
+       'fecha_update' => date('Y-m-d H:i:s')
+
     );
 
-    if ($this->input->post('inp_text7') != '') {
-      $data['clave'] = $this->hash($this->input->post('inp_text7'));
-      $this->send_email($this->input->post('inp_text6'),$this->input->post('inp_text7'),$data['razon_social'],$data['codigo_afiliacion'],$data['nombre_comercial'],1);
-    }
     $res = $this->Modelo_empresa->upd($this->input->post('inp_text1'),$data);
 
 
 
     $this->output->set_content_type('application/json')
     ->set_output(json_encode($res));
+  }
+
+  public function upd_clave()
+  {
+      // upd clave
+
+      $data['clave'] = $this->hash($this->input->post('inp_text2'));
+      $data['fecha_update'] = date('Y-m-d H:i:s');
+      $this->Modelo_empresa->upd($this->input->post('inp_text1'),$data);
+
+      // fin upd clave
+      // obtener datos de la empresa para email
+      $email = $this->Modelo_empresa->get_data_for_mail($this->input->post('inp_text1'));
+      //fin consulta envio de email
+      // print_r($email);
+      $res = $this->send_email($email->email,$this->input->post('inp_text2'),$email->razon_social,$email->codigo_afiliacion,$email->nombre_comercial,1);
+
+      $this->output->set_content_type('application/json')
+      ->set_output(json_encode($res));
+
   }
 
   public function send_email($email,$clave,$razon_social,$codigo_afiliacion,$nombre_comercial,$if)

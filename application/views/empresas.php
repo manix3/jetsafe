@@ -20,6 +20,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
               </tr>
           </thead>
           <tbody id="grillaDatos">
@@ -107,15 +108,7 @@
                   <input id="inp_text6" name="inp_text6" placeholder="Email" class="form-control" required value='' type="email">
                 </div>
             </div>
-            <div class="form-group" style="display:none" id="clave">
-              <label for="normal-field" class="col-sm-4 control-label">
-              Clave
 
-              </label>
-                <div class="col-sm-8">
-                  <input id="inp_text7" name="inp_text7" placeholder="Clave" class="form-control" required value='' type="password">
-                </div>
-            </div>
 
             </div>
 
@@ -159,8 +152,43 @@
   </div>
 </div>
 <!--Fin Modal para ver Registro !-->
+<!-- Editar contrase;a -->
+<div class="modal fade" id="myModaleditaClave" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+  <div class="modal-dialog ">
+    <form id="form_pass" class="form-horizontal form-label-left form1" data-abide="ajax" enctype="multipart/form-data" method="post"  data-parsley-validate="" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3 class="modal-title" id="myModaleditaLabel"> <span id="title"></span> Clave</h3>
+        </div>
+        <div class="modal-body">
+          <fieldset>
+
+            <input id="inp_text1" name="inp_text1" class="form-control" placeholder="" readonly="true" value='' type="hidden">
 
 
+            <div class="form-group" id="clave">
+              <label for="normal-field" class="col-sm-4 control-label">
+              Clave
+
+              </label>
+                <div class="col-sm-8">
+                  <input id="inp_text2" name="inp_text2" placeholder="Clave" class="form-control" required value='' type="password">
+                </div>
+            </div>
+
+            </div>
+
+          </fieldset>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary" id="btnSend">Guardar Cambios</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
 
 <?php $this->load->view('includes/scripts') ?>

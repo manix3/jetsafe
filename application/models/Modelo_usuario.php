@@ -8,7 +8,7 @@ class Modelo_usuario extends CI_Model  {
 
     $res = $this->db->select('*')
                      ->from('t_usuarios')
-                     ->where(array('usuario' => $username , 'clave' => $this->hash($password) ))
+                     ->where(array('usuario' => $username , 'clave' => $this->hash($password),'estado' => 1))
                      ->get();
 
       if ($res) {
