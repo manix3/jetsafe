@@ -139,7 +139,7 @@ class Compras extends CI_Controller
     $datos_negado = array();
     if ($this->input->post('estado') == '1') {
       $datos_aprobados = array(
-        'fecha' => $this->input->post('inp_text2'),
+        'fecha' => date('Y-m-d H:i:s'),
         'nrooperacion' => $this->input->post('inp_text3'),
         'transaccionid' => $id,
         'fechatransaccion' => $this->input->post('fecha')
@@ -148,7 +148,7 @@ class Compras extends CI_Controller
         'estado' => $this->input->post('estado'),
         'transaccionid' => $id,
         'observacion' => $this->input->post('inp_text3'),
-        'fecha' => $this->input->post('inp_text2')
+        'fecha' => date('Y-m-d H:i:s')
         );
 
       //envio a t_transacciones
@@ -229,7 +229,7 @@ class Compras extends CI_Controller
 
     $this->Modelo_compras->upd_t_pedidos($id,array('estado' => $this->input->post('estado')));
 
-    $datos = array('fecha' => $this->input->post('fecha_negada'),
+    $datos = array('fecha' => date('Y-m-d H:i:s'),
     'observacion' => $this->input->post('observacion_negada'),
     'pedidoid' => $id,
     'estado' => $this->input->post('estado'),

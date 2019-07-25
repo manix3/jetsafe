@@ -120,14 +120,6 @@
 
               <div class="form-group">
                 <label for="normal-field" class="col-sm-4 control-label">
-                  Fecha
-                </label>
-                <div class="col-sm-8">
-                  <input type="date" name="fecha_negada" class="form-control" id="fecha_negada" value="">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="normal-field" class="col-sm-4 control-label">
                   Observacion
                 </label>
                 <div class="col-sm-8">
@@ -201,16 +193,7 @@
           </div>
           <div class="padre">
             <div class="aprobar" style="display:none" id="aprobar">
-              <div class="form-group">
-                <label for="normal-field" class="col-sm-4 control-label">
-                  Fecha
 
-                </label>
-                <div class="col-sm-8">
-                  <input type="date" class="form-control" name="inp_text2" id="inp_text2" value="">
-                </div>
-
-              </div>
               <div class="form-group">
                 <label for="normal-field" class="col-sm-4 control-label">
                   Nro operacion
@@ -256,14 +239,7 @@
                   <input type="date" name="fecha_de_abono" class="form-control" id="fecha_de_abono" value="">
                 </div>
               </div>
-              <div class="form-group">
-                <label for="normal-field" class="col-sm-4 control-label">
-                  Fecha
-                </label>
-                <div class="col-sm-8">
-                  <input type="date" name="fecha_negada" class="form-control" id="fecha_negada" value="">
-                </div>
-              </div>
+
               <div class="form-group">
                 <label for="normal-field" class="col-sm-4 control-label">
                   Observacion

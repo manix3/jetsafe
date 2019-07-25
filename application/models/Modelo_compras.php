@@ -57,7 +57,7 @@ class Modelo_compras extends CI_Model
 
   public function list_pedidos($id)
   {
-    $sql = "SELECT *,(SELECT titulo FROM t_estados_pedido WHERE estadopedidoid = t1.estado) AS titulo_estado FROM t_pedidos t1, t_empresas t2, t_metodos_pago t3 WHERE t1.empresaid = t2.empresaid AND t1.metodopagoid = t3.metodopagoid AND t1.pedidoid = $id";
+    $sql = "SELECT t1.*,t2.nombre_comercial,t2.email,t3.titulo as titulo_metodo_pago,(SELECT titulo FROM t_estados_pedido WHERE estadopedidoid = t1.estado) AS titulo_estado FROM t_pedidos t1, t_empresas t2, t_metodos_pago t3 WHERE t1.empresaid = t2.empresaid AND t1.metodopagoid = t3.metodopagoid AND t1.pedidoid = $id";
 
     $res = $this->db->query($sql);
     if ($res) {
@@ -233,6 +233,7 @@ class Modelo_compras extends CI_Model
     $this->db->select('*');
     $this->db->from('t_transacciones_estado');
     $this->db->join('t_estados_transaccion estr','estr.id = t_transacciones_estado.estado');
+    $this->db->order_by('fecha','DESC');
     $res = $this->db->get();
     if ($res) {
       return $res->result();
@@ -243,11 +244,11 @@ class Modelo_compras extends CI_Model
 
   public function get_log_pedidos($id)
   {
-    $this->db->where('t_pedidos_transacciones.transaccionid',$id);
-    $this->db->from('t_pedidos_transacciones');
+    $this->db->where('t_pedidos_estado.pedidoid',$id);
+    $this->db->from('t_pedidos_estado');
     $this->db->select('*');
-    $this->db->join('t_pedidos_estado','t_pedidos_estado.pedidoid = t_pedidos_transacciones.pedidoid');
     $this->db->join('t_estados_pedido','t_estados_pedido.estadopedidoid = t_pedidos_estado.estado');
+    $this->db->order_by('t_pedidos_estado.fecha','DESC');
     $res = $this->db->get();
     if ($res) {
       return $res->result();

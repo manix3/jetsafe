@@ -1,12 +1,71 @@
 $(function() {
   jalar_data(IDR)
 
+  $('#btnLog').click(function() {
+    var log = ''
+    $.getJSON(base_url+'compras/get_log/'+1+'/'+IDR,function(data) {
+      $.each(data,function(i,item) {
+      log += `
+      <tr>
+        <td>Pedido id:${item.pedidoid}</td>
+        <td>${item.titulo}</td>
+        <td>${item.observacion}</td>
+        <td>${item.fecha}</td>
+      </tr>
+        `
+      })
+      $('#log').html(log)
+    })
+    $('#myModalog').modal('show')
+  })
+
+
+
   $('#datatable-table').on('click','.imp_registro',function(e) {
     var idr = $(this).attr('idr')
     var vou = $(this).attr('vou')
     var dom = $(this).attr('dom')
     var pd = $(this).attr('pd')
     window.open(`${dom}/upload/${idr}/${pd}/${vou}`,'_blank')
+  })
+
+
+  $('#datatable-table-transaccion').on('click','.edi_registro',function(e) {
+    e.preventDefault()
+      $("input").val('')
+      var datos = ''
+      var idr = $(this).attr('idr')
+      $('#form_estado_ #inp_text1').val(idr)
+        $.getJSON(base_url+'compras/get_log/'+1+'/'+idr,function(data) {
+          $.each(data,function(i,item) {
+          datos += `
+          <tr>
+            <td>Pedido id:${item.pedidoid}</td>
+            <td>${item.titulo}</td>
+            <td>${item.observacion}</td>
+            <td>${item.fecha}</td>
+          </tr>
+            `
+          })
+        $('#detalle_registro_').html(datos)
+      })
+      $('#myModaleditapedido').modal('show')
+  })
+
+
+  $('#form_estado_').submit(function(e) {
+    e.preventDefault()
+    $('#btnNuevo').attr('disabled',true)
+    $.ajax({
+      url: base_url+'compras/cambiar_estado_pedi',
+      data: $(this).serialize(),
+      type: 'POST',
+      success:function(data) {
+        $('#myModaleditapedido').modal('hide')
+        $('#btnNuevo').removeAttr('disabled')
+        jalar_data($('#id_pedi').html())
+      }
+    })
   })
 
   $('#datatable-table').on('click','.tar_registro',function(e) {
@@ -35,19 +94,25 @@ $(function() {
 
 function jalar_data(idr) {
   var tabla1 = '',tabla2 = ''
+  $('#datatable-table').dataTable().fnDestroy()
   $.getJSON(base_url+'compras/list_usuarios/'+idr,function(data) {
     $.each(data.pedido, function(i,item) {
-
+      $('#id_pedi').html(item.pedidoid)
+      if (item.estado != '5') {
+        var editar = `<td idr="${item.pedidoid}" class="edi_registro"><i class="fa fa-pencil"></i></td>`
+      } else {
+        var editar = '<td> </td>'
+      }
       tabla2 += `
       <tr>
-      <td>${item.titulo != null ? item.titulo : ' '}</td>
+      <td>${item.titulo_metodo_pago != null ? item.titulo_metodo_pago : ' '}</td>
       <td>${item.nombre_comercial != null ? item.nombre_comercial : ' '}</td>
       <td>${item.email != null ? item.email : ' '}</td>
       <td>${item.titulo_estado != null ? item.titulo_estado : ' '}</td>
       <td>${item.cantidad != null ? item.cantidad : ' '}</td>
       <td>${item.observacion != null ? item.observacion : ' '}</td>
       <td>${item.idioma != null ? item.idioma : ' '}</td>
-
+      ${editar}
       </tr>
       `
     })

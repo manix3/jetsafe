@@ -3,11 +3,11 @@ $(function() {
 
   $('#btnLog').click(function() {
     var log = ''
-    $.getJSON(base_url+'compras/get_log/'+1+'/'+IDR,function(data) {
+    $.getJSON(base_url+'compras/get_log/'+0+'/'+IDR,function(data) {
       $.each(data,function(i,item) {
       log += `
       <tr>
-        <td>Pedido id:${item.pedidoid}</td>
+        <td>Transaccion id:${item.transaccionid}</td>
         <td>${item.titulo}</td>
         <td>${item.observacion}</td>
         <td>${item.fecha}</td>
@@ -37,6 +37,11 @@ $(function() {
     e.preventDefault()
       var idr = $(this).attr('idr')
       var datos = ''
+      $('#myModalver input').val('')
+      $('#myModalver select').val('')
+      $('#form_estado #aprobar').hide()
+      $('#form_estado #denegar').hide()
+      $('#myModalver #inp_text1').val(idr)
       $.getJSON(base_url+'compras/get_log/'+0+'/'+idr,function(data) {
         $.each(data,function(i,item) {
         datos += `
@@ -101,7 +106,7 @@ $(function() {
           var datos = ''
           var idr = $(this).attr('idr')
           $('#form_estado_ #inp_text1').val(idr)
-            $.getJSON(base_url+'compras/get_log/'+1+'/'+IDR,function(data) {
+            $.getJSON(base_url+'compras/get_log/'+1+'/'+idr,function(data) {
               $.each(data,function(i,item) {
               datos += `
               <tr>
