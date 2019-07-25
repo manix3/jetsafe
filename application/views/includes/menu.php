@@ -6,7 +6,7 @@
     <!-- need this .js class to initiate slimscroll -->
     <div class="js-sidebar-content">
         <header class="logo hidden-xs">
-            <a href="<?php echo base_url(); ?>home">JetSafe</a>
+            <a href="<?php echo base_url(); ?>home"><img src="<?= base_url() ?>assets/img/logo_jetsafe.png" style="width:170px" alt=""> </a>
         </header>
         <!-- main notification links are placed inside of .sidebar-nav -->
         <!-- <ul class="sidebar-nav">
@@ -82,7 +82,7 @@
               </ul>
           </li>
           <?php endif; ?>
-          
+
           <li class="" id="coti_mantenimiento_moneda">
               <a class="collapsed" href="#sidebar-tables" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
                   <span class="icon">

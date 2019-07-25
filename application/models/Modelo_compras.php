@@ -26,7 +26,7 @@ class Modelo_compras extends CI_Model
   public function list_detalle($id)
   {
     $sql = "SELECT e.titulo as titulo_estado,mp.titulo as titulo_metodo,p.*,
-     tran.voucher, tran.transaccionid FROM t_pedidos_transacciones pt JOIN t_pedidos p
+     tran.voucher, tran.transaccionid,tran.estado as estado_transaccion FROM t_pedidos_transacciones pt JOIN t_pedidos p
      ON p.pedidoid = pt.pedidoid JOIN t_metodos_pago mp ON mp.metodopagoid = p.metodopagoid
      JOIN t_estados_pedido e ON e.estadopedidoid = p.estado JOIN t_transacciones tran
      ON tran.transaccionid = pt.transaccionid LEFT JOIN m_idioma mi ON mi.idiomaid = p.idioma

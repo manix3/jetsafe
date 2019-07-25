@@ -173,7 +173,7 @@ function jalar_data(idr) {
           var imp = '<td> </td>'
         }
 
-        if (etim.estado == '5') {
+        if (etim.estado_transaccion == '2') {
           var editar = '<td> </td>'
         } else {
           var editar = `<td idr="${etim.pedidoid}" class="edi_registro"><i class="fa fa-pencil"></i></td>`
